@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/utils/assets.dart';
 import 'package:food_delivery_app/core/utils/custom_button.dart';
 import 'package:food_delivery_app/core/utils/soft_gradient_painter.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
@@ -23,7 +24,7 @@ class OnboardingScreenBody extends StatelessWidget {
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
-              child: Image.asset('assets/images/chef.png'),
+              child: Image.asset(AssetsData.chefLogo),
             ),
           ),
           Positioned(
@@ -48,7 +49,7 @@ class OnboardingScreenBody extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/images/boy_character.png'),
+                        image: AssetImage(AssetsData.boyCharacter),
                       ),
                     ),
                   ),
@@ -77,7 +78,7 @@ class OnboardingScreenBody extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/images/girl_character.png'),
+                        image: AssetImage(AssetsData.girlCharacter),
                       ),
                     ),
                   ),
