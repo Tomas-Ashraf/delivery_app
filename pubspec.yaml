@@ -32,14 +32,9 @@ dependencies:
   flutter:
     sdk: flutter
   go_router: ^17.1.0
+  lottie: ^3.3.2
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
@@ -58,6 +53,8 @@ flutter:
     - assets/images/chef.png
     - assets/images/girl_character.png
     - assets/images/boy_character.png
+    - assets/animation/food_animation.json
+
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
