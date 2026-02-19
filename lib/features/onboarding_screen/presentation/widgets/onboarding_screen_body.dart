@@ -1,10 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/utils/app_router.dart';
 import 'package:food_delivery_app/core/utils/assets.dart';
 import 'package:food_delivery_app/core/utils/custom_button.dart';
 import 'package:food_delivery_app/core/utils/soft_gradient_painter.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingScreenBody extends StatelessWidget {
   const OnboardingScreenBody({super.key});
@@ -111,7 +113,9 @@ class OnboardingScreenBody extends StatelessWidget {
               radius: 30,
               text: 'Get Started',
               textStyle: Styles.textStyle17,
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).pushReplacement(AppRouter.kAuthScreen);
+              },
             ),
           ),
         ],
