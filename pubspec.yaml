@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
+  dart_either: ^2.0.0
   flutter:
     sdk: flutter
   go_router: ^17.1.0
@@ -54,6 +55,7 @@ flutter:
     - assets/images/girl_character.png
     - assets/images/boy_character.png
     - assets/animation/food_animation.json
+    - assets/images/chef_b.png
 
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
