@@ -113,6 +113,7 @@ class OnboardingScreenBody extends StatelessWidget {
               radius: 30,
               text: 'Get Started',
               textStyle: Styles.textStyle17,
+              backgroundColor: const Color(0xFFFFFFFF),
               onTap: () {
                 GoRouter.of(context).pushReplacement(AppRouter.kAuthScreen);
               },
