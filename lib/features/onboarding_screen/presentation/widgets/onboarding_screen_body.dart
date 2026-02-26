@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_router.dart';
 import 'package:food_delivery_app/core/utils/assets.dart';
-import 'package:food_delivery_app/core/utils/widgets/custom_button.dart';
+import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:food_delivery_app/core/utils/soft_gradient_painter.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
 import 'package:go_router/go_router.dart';

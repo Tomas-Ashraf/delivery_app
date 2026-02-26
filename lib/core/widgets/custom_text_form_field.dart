@@ -10,12 +10,14 @@ class CustomTextFormField extends StatefulWidget {
     this.suffixIcon,
     this.hint,
     this.validator,
+    this.onChanged,
   });
   final TextInputType? keyboardType;
   final bool obscureText;
   final Widget? suffixIcon;
   final Widget? hint;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -38,6 +40,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
       ),
       validator: widget.validator,
+      onChanged: widget.onChanged,
     );
   }
 }

@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/constants.dart';
-import 'package:food_delivery_app/core/utils/widgets/custom_button.dart';
+import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
-import 'package:food_delivery_app/core/utils/widgets/custom_text_form_field.dart';
+import 'package:food_delivery_app/core/widgets/custom_text_form_field.dart';
+import 'package:food_delivery_app/features/auth_screen/data/models/user_model.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/manager/auth_cubit/auth_cubit.dart';
 
 class SignupFormSection extends StatefulWidget {
@@ -17,11 +18,12 @@ class SignupFormSection extends StatefulWidget {
 
 class _SignupFormSectionState extends State<SignupFormSection> {
   final _formKey = GlobalKey<FormState>();
+  final userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    final authCubit = BlocProvider.of<AuthCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 14),
       child: SizedBox(
@@ -33,6 +35,28 @@ class _SignupFormSectionState extends State<SignupFormSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text('Your Name', style: Styles.textStyle15),
+              SizedBox(
+                width: double.infinity,
+                height: 59,
+                child: CustomTextFormField(
+                  keyboardType: TextInputType.name,
+                  obscureText: false,
+                  hint: Text(
+                    'Enter your Name',
+                    style: Styles.textStyle17.copyWith(
+                      color: Color(0xFF000000),
+                    ),
+                  ),
+                  validator: (value) {
+                    return authCubit.nameValidator(value: value);
+                  },
+                  onChanged: (value) {
+                    userModel.userName = value.toString();
+                  },
+                ),
+              ),
+              SizedBox(height: screenSize.height * 0.02),
               Text('Email address', style: Styles.textStyle15),
               SizedBox(
                 width: double.infinity,
@@ -47,9 +71,10 @@ class _SignupFormSectionState extends State<SignupFormSection> {
                     ),
                   ),
                   validator: (value) {
-                    return BlocProvider.of<AuthCubit>(
-                      context,
-                    ).emailValidator(value: value);
+                    return authCubit.emailValidator(value: value);
+                  },
+                  onChanged: (value) {
+                    userModel.email = value.toString();
                   },
                 ),
               ),
@@ -67,7 +92,7 @@ class _SignupFormSectionState extends State<SignupFormSection> {
                         context,
                       ).togglePasswordVisibility();
                     },
-                    icon: BlocProvider.of<AuthCubit>(context).isObscure
+                    icon: authCubit.isObscure
                         ? Icon(Icons.visibility_off)
                         : Icon(Icons.visibility),
                   ),
@@ -77,9 +102,11 @@ class _SignupFormSectionState extends State<SignupFormSection> {
                       color: Color(0xFF000000),
                     ),
                   ),
-                  validator: (value) => BlocProvider.of<AuthCubit>(
-                    context,
-                  ).passwordSignupValidator(value),
+                  validator: (value) =>
+                      authCubit.passwordSignupValidator(value),
+                  onChanged: (value) {
+                    userModel.password = value.toString();
+                  },
                 ),
               ),
               SizedBox(height: screenSize.height * 0.03),
@@ -93,10 +120,10 @@ class _SignupFormSectionState extends State<SignupFormSection> {
                 backgroundColor: kPrimaryColor,
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data')),
+                    authCubit.signUp(
+                      name: userModel.userName,
+                      email: userModel.email,
+                      password: userModel.password,
                     );
                   }
                 },
