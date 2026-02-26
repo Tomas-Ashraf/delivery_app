@@ -3,10 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/constants.dart';
-import 'package:food_delivery_app/core/utils/widgets/custom_button.dart';
+import 'package:food_delivery_app/core/utils/app_router.dart';
+import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
-import 'package:food_delivery_app/core/utils/widgets/custom_text_form_field.dart';
+import 'package:food_delivery_app/core/widgets/custom_text_form_field.dart';
+import 'package:food_delivery_app/features/auth_screen/data/models/user_model.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/manager/auth_cubit/auth_cubit.dart';
+import 'package:go_router/go_router.dart';
 
 class SigninFormSection extends StatefulWidget {
   const SigninFormSection({super.key});
@@ -17,10 +20,12 @@ class SigninFormSection extends StatefulWidget {
 
 class _SigninFormSectionState extends State<SigninFormSection> {
   final _formKey = GlobalKey<FormState>();
+  final userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    final authCubit = BlocProvider.of<AuthCubit>(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 14),
@@ -47,9 +52,10 @@ class _SigninFormSectionState extends State<SigninFormSection> {
                     ),
                   ),
                   validator: (value) {
-                    return BlocProvider.of<AuthCubit>(
-                      context,
-                    ).emailValidator(value: value);
+                    return authCubit.emailValidator(value: value);
+                  },
+                  onChanged: (value) {
+                    userModel.email = value.toString();
                   },
                 ),
               ),
@@ -63,11 +69,9 @@ class _SigninFormSectionState extends State<SigninFormSection> {
                   obscureText: BlocProvider.of<AuthCubit>(context).isObscure,
                   suffixIcon: IconButton(
                     onPressed: () {
-                      BlocProvider.of<AuthCubit>(
-                        context,
-                      ).togglePasswordVisibility();
+                      authCubit.togglePasswordVisibility();
                     },
-                    icon: BlocProvider.of<AuthCubit>(context).isObscure
+                    icon: authCubit.isObscure
                         ? Icon(Icons.visibility_off)
                         : Icon(Icons.visibility),
                   ),
@@ -78,14 +82,20 @@ class _SigninFormSectionState extends State<SigninFormSection> {
                     ),
                   ),
                   validator: (value) {
-                    return BlocProvider.of<AuthCubit>(
-                      context,
-                    ).passwordValidator(value);
+                    return authCubit.passwordValidator(value);
+                  },
+                  onChanged: (value) {
+                    userModel.password = value.toString();
                   },
                 ),
               ),
               SizedBox(height: screenSize.height * 0.03),
-              Text('Forgot passcode?', style: Styles.textStyle17),
+              TextButton(
+                child: Text('Forgot passcode?', style: Styles.textStyle17),
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kResetScreen);
+                },
+              ),
               Spacer(),
               CustomButton(
                 width: double.infinity,
@@ -95,7 +105,12 @@ class _SigninFormSectionState extends State<SigninFormSection> {
                 textStyle: Styles.textStyle17.copyWith(color: Colors.white),
                 backgroundColor: kPrimaryColor,
                 onTap: () {
-                  if (_formKey.currentState!.validate()) {}
+                  if (_formKey.currentState!.validate()) {
+                    authCubit.signIn(
+                      email: userModel.email,
+                      password: userModel.password,
+                    );
+                  }
                 },
               ),
             ],
