@@ -9,13 +9,15 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.textStyle,
     required this.onTap,
+    required this.backgroundColor,
   });
   final double width;
   final double height;
   final int radius;
   final String text;
   final TextStyle textStyle;
-  final void Function() onTap;
+  final Function() onTap;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CustomButton extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: const Color(0xFFFFFFFF),
+          color: backgroundColor,
           borderRadius: BorderRadius.circular(radius.toDouble()),
         ),
         child: Center(child: Text(text, style: textStyle)),
