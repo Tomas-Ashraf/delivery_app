@@ -45,6 +45,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
               backgroundColor: kPrimaryColor,
             ),
           );
+          GoRouter.of(context).pushReplacement(AppRouter.kHomeScreen);
         } else if (state is UserSignInSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

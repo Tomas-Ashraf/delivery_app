@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/constants.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -22,7 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: backgroundColor,
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: EdgeInsets.symmetric(vertical: 15.sp),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: List.generate(icons.length, (index) {
@@ -48,7 +49,7 @@ class CustomBottomNavBar extends StatelessWidget {
               child: Icon(
                 icons[index],
                 color: active ? kPrimaryColor : Colors.grey,
-                size: 28,
+                size: 28.sp,
               ),
             ),
           );

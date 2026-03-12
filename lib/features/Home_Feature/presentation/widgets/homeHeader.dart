@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -10,12 +11,12 @@ class HomeHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Icon(Icons.menu, size: 30, color: Color(0xFF1A1A1A)),
+          Icon(Icons.menu, size: 30.sp, color: Color(0xFF1A1A1A)),
           Badge(
             backgroundColor: const Color(0xFFFA4A0C),
-            child: const Icon(
+            child: Icon(
               Icons.shopping_cart_outlined,
-              size: 30,
+              size: 30.sp,
               color: Color(0xFF1A1A1A),
             ),
           ),

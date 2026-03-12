@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_router.dart';
 import 'package:food_delivery_app/core/utils/assets.dart';
-import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:food_delivery_app/core/utils/soft_gradient_painter.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
+import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:go_router/go_router.dart';
 
 class OnboardingScreenBody extends StatelessWidget {
@@ -35,7 +35,7 @@ class OnboardingScreenBody extends StatelessWidget {
             child: SizedBox(
               width: 275,
               // height: 112,
-              child: const Text('Food for Everyone', style: Styles.textStyle65),
+              child: Text('Food for Everyone', style: Styles.textStyle65),
             ),
           ),
           Stack(

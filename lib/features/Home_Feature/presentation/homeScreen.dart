@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/features/Account_Feature/accountScreen.dart';
-import 'package:food_delivery_app/features/Favorite_Feature/favoriteScreen.dart';
-import 'package:food_delivery_app/features/History_Screen/historyScreen.dart';
+import 'package:food_delivery_app/features/History_Feature/historyScreen.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/Home/Home.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/customBottomNavBar.dart';
+import 'package:food_delivery_app/features/orders_Feature/OrdersScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 final List<Widget> screens = [
   const HomeWidget(),
-  const FavoriteScreen(),
+  const OrdersScreen(),
   const HistoryScreen(),
   const AccountScreen(),
 ];
@@ -24,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home Screen')),
       body: screens[currentIndex],
 
       bottomNavigationBar: CustomBottomNavBar(
