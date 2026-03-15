@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/core/utils/spaces.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/Items.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/homeCategories.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/homeHeader.dart';
@@ -14,34 +16,31 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F7),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            HomeHeader(),
-            SizedBox(height: 20),
-            HomeTitle(),
-            SizedBox(height: 16),
-            HomeSearch(),
-            SizedBox(height: 20),
-            HomeCategories(),
-            SizedBox(height: 12),
-            SeeMore(),
-            SizedBox(height: 12),
-            ItemList(),
-          ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF7F7F7),
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HomeHeader(),
+              Spaces.verticalSpace(20.h),
+              HomeTitle(),
+              Spaces.verticalSpace(16.h),
+              HomeSearch(),
+              Spaces.verticalSpace(20.h),
+              HomeCategories(),
+              Spaces.verticalSpace(12.h),
+              SeeMore(),
+              Spaces.verticalSpace(12.h),
+              ItemList(),
+            ],
+          ),
         ),
       ),
-      // bottomNavigationBar: CustomBottomNavBar(
-      //   currentIndex: _currentIndex,
-      //   onTap: (index) => setState(() => _currentIndex = index),
-      // ),
     );
   }
 }
