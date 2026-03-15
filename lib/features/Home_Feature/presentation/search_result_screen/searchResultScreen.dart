@@ -26,10 +26,8 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
     super.initState();
     _cubit = SearchCubit();
 
-    // سيرش بالـ query الأولي
     _cubit.search(widget.initialQuery);
 
-    // ✅ استمع لكل تغيير في الـ controller
     widget.controller.addListener(_onQueryChanged);
   }
 
@@ -52,12 +50,12 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
         appBar: buildAppBar(context, 'Search Results'),
         body: BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
-            // ── لودينج ───────────────────────────────────────────────
+            // ── in case of loading  ───────────────────────────────────────────────
             if (state is SearchInitial || state is SearchLoading) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            // ── ايرور ────────────────────────────────────────────────
+            // ── in case of there is an error ────────────────────────────────────────────────
             if (state is SearchError) {
               return Center(
                 child: Column(
@@ -83,7 +81,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
               );
             }
 
-            // ── فاضي ─────────────────────────────────────────────────
+            // ── state of empty data────────────────────────────────────────────────
             if (state is SearchLoaded && state.items.isEmpty) {
               return const Center(
                 child: Text(
@@ -93,7 +91,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
               );
             }
 
-            // ── داتا ─────────────────────────────────────────────────
+            // ── Data ─────────────────────────────────────────────────
             final items = (state as SearchLoaded).items;
             return Column(
               children: [
