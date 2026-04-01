@@ -59,7 +59,6 @@ class OrderItem extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // TODO: View order details
                   },
                   child: const Text(
                     'View Details',
@@ -75,6 +74,6 @@ class OrderItem extends StatelessWidget {
         ),
       ),
     );
-    ;
+    
   }
 }

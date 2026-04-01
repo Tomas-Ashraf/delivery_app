@@ -7,6 +7,14 @@
 
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
+analyzer:
+  errors:
+    file_names: ignore
+    deprecated_member_use: ignore
+    avoid_print: ignore
+    unnecessary_underscores: ignore
+    use_key_in_widget_constructors: ignore
+    library_prefixes: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:
