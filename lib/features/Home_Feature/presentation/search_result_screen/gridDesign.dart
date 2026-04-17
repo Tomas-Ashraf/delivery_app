@@ -8,7 +8,7 @@ class GridDesign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // فصل الـ items لعمودين
+    // Split items into two lists for left and right columns
     final leftItems = [for (int i = 0; i < items.length; i += 2) items[i]];
     final rightItems = [for (int i = 1; i < items.length; i += 2) items[i]];
 
@@ -17,10 +17,10 @@ class GridDesign extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // العمود الشمال
+          // Left column with no top offset
           Expanded(child: ColumnDesign(items: leftItems, topOffset: 0)),
           const SizedBox(width: 12),
-          // العمود اليمين — بيبدأ أسفل شوية عشان الـ offset
+          // Right column with a top offset of 60
           Expanded(child: ColumnDesign(items: rightItems, topOffset: 60)),
         ],
       ),
