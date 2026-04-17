@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/utils/styles.dart';
 
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField({
@@ -29,6 +30,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return TextFormField(
       keyboardType: widget.keyboardType,
       obscureText: widget.obscureText,
+      style: Styles.textStyle17.copyWith(color: Colors.black),
       decoration: InputDecoration(
         suffixIcon: widget.suffixIcon,
         hint: widget.hint,
@@ -39,6 +41,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           borderSide: BorderSide(color: Color(0xFF000000).withOpacity(0.4)),
         ),
       ),
+
       validator: widget.validator,
       onChanged: widget.onChanged,
     );

@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/features/History_Feature/historyScreen.dart';
-import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/Home/Home.dart';
+import 'package:food_delivery_app/features/Home_Feature/presentation/homeScreen.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/auth_screen.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/reset_password_screen.dart';
@@ -13,7 +13,6 @@ abstract class AppRouter {
   static const kOnBoardingScreen = '/onBoardingScreen';
   static const kHomeScreen = '/homeScreen';
   static const kAuthScreen = '/authScreen';
-  //static const kHomeScreen = '/homeScreen';
   static const kResetScreen = '/resetPasswordScreen';
 
   //routers of orders and history screens
@@ -41,7 +40,7 @@ abstract class AppRouter {
       ),
 
       //routes of Home operation screens
-      GoRoute(path: kHomeScreen, builder: (context, state) => HomeWidget()),
+      GoRoute(path: kHomeScreen, builder: (context, state) => HomeScreen()),
       GoRoute(path: kOrdersScreen, builder: (context, state) => OrdersScreen()),
       GoRoute(
         path: kHistoryScreen,
