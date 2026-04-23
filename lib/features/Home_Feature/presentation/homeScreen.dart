@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/features/Account_Feature/accountScreen.dart';
+import 'package:food_delivery_app/features/account_screen/presentation/account_screen.dart';
 import 'package:food_delivery_app/features/History_Feature/historyScreen.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/Home/Home.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/customBottomNavBar.dart';

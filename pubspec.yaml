@@ -63,6 +63,7 @@ flutter:
     - assets/images/boy_character.png
     - assets/animation/food_animation.json
     - assets/images/chef_b.png
+    - assets/images/Toy.jpg
 
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
