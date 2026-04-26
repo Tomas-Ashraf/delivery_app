@@ -115,6 +115,8 @@ class AuthCubit extends Cubit<AuthState> {
     String? name,
     required String email,
     required String password,
+    String? address,
+    String? phoneNumber,
     final context,
   }) async {
     emit(UserSignUpLoading());
@@ -125,10 +127,12 @@ class AuthCubit extends Cubit<AuthState> {
       CollectionReference users = FirebaseFirestore.instance.collection(
         'users',
       );
-      users.add({
+      await users.doc(name).set({
         'full_name': name,
         'email': email,
-        'initail_time': DateTime.now(),
+        'address': address,
+        'phone_number': phoneNumber,
+        'initial_time': DateTime.now(),
       });
       emit(UserSignUpSuccess());
     } on FirebaseAuthException catch (e) {
