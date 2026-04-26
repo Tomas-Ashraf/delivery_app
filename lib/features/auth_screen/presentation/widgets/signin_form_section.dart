@@ -31,7 +31,7 @@ class _SigninFormSectionState extends State<SigninFormSection> {
       padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 14),
       child: SizedBox(
         width: double.infinity,
-        height: screenSize.height * 0.52,
+        height: screenSize.height * 0.58,
         child: Form(
           key: _formKey,
           child: Column(

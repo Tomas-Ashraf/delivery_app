@@ -45,7 +45,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
               backgroundColor: kPrimaryColor,
             ),
           );
-          GoRouter.of(context).pushReplacement(AppRouter.kHomeScreen);
+          // GoRouter.of(context).pushReplacement(AppRouter.kHomeScreen);
         } else if (state is UserSignInSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -79,7 +79,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
           return Column(
             children: [
               AuthTopSection(),
-              SizedBox(height: screenSize.height * 0.03),
+              SizedBox(height: screenSize.height * 0.01),
               SigninFormSection(),
             ],
           );
@@ -87,7 +87,7 @@ class _AuthScreenBodyState extends State<AuthScreenBody> {
           return Column(
             children: [
               AuthTopSection(),
-              SizedBox(height: screenSize.height * 0.03),
+              SizedBox(height: screenSize.height * 0.01),
               SignupFormSection(),
             ],
           );
