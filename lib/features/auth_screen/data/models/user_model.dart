@@ -12,4 +12,13 @@ class UserModel {
     this.phoneNumber,
     this.address,
   });
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      userName: map['full_name'].toString(),
+      email: map['email'].toString(),
+      address: map['address'].toString(),
+      phoneNumber: map['phone_number'].toString(),
+    );
+  }
 }
