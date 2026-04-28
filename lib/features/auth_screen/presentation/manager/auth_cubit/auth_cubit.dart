@@ -5,6 +5,7 @@ import 'dart:developer' show log;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/core/utils/firebase_service.dart';
 import 'package:food_delivery_app/features/auth_screen/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   Future<UserModel?> getUserData({required String email}) async {
     try {
-      final QuerySnapshot snapshot = await firestore
+      final QuerySnapshot snapshot = await FireBaseService.firestoreInstance
           .collection('users')
           .where('email', isEqualTo: email)
           .limit(1)
@@ -109,13 +110,12 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      final credential = await FireBaseService.fireBaseAuthInstance
+          .signInWithEmailAndPassword(email: email, password: password);
       log('The user has signed in Successfully');
       UserModel? userData = await getUserData(email: email);
       await prefs.setString('UserName', userData?.userName ?? '');
+      await prefs.setBool('isLogin', true);
       emit(UserSignInSuccess());
     } on FirebaseAuthException catch (e) {
       log('Firebase Exception: ${e.toString()}');
@@ -150,10 +150,10 @@ class AuthCubit extends Cubit<AuthState> {
   }) async {
     emit(UserSignUpLoading());
     try {
-      final credential = await FirebaseAuth.instance
+      final credential = await FireBaseService.fireBaseAuthInstance
           .createUserWithEmailAndPassword(email: email, password: password);
       log('The user added Successfully');
-      CollectionReference users = FirebaseFirestore.instance.collection(
+      CollectionReference users = FireBaseService.firestoreInstance.collection(
         'users',
       );
       await users.doc(name).set({
@@ -186,7 +186,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> resetPassword({required String email}) async {
     try {
       emit(PasscodeResetLoading());
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FireBaseService.fireBaseAuthInstance.sendPasswordResetEmail(
+        email: email,
+      );
       emit(PasscodeResetSuccess());
     } on FirebaseAuthException catch (e) {
       log(e.toString());
