@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/core/utils/app_router.dart';
@@ -7,6 +7,7 @@ import 'package:food_delivery_app/core/utils/soft_gradient_painter.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
 import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreenBody extends StatelessWidget {
   const OnboardingScreenBody({super.key});
@@ -114,8 +115,17 @@ class OnboardingScreenBody extends StatelessWidget {
               text: 'Get Started',
               textStyle: Styles.textStyle17,
               backgroundColor: const Color(0xFFFFFFFF),
-              onTap: () {
-                GoRouter.of(context).pushReplacement(AppRouter.kAuthScreen);
+              onTap: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                final bool? isLogin = prefs.getBool('isLogin');
+                isLogin == true
+                    ? GoRouter.of(
+                        context,
+                      ).pushReplacement(AppRouter.kHomeScreen)
+                    : GoRouter.of(
+                        context,
+                      ).pushReplacement(AppRouter.kAuthScreen);
               },
             ),
           ),
