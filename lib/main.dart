@@ -32,8 +32,9 @@ class MyApp extends StatelessWidget {
           ],
           child: MaterialApp.router(
             routerConfig: AppRouter.router,
+            // home: ItemDetails(),
             theme: ThemeData(
-              scaffoldBackgroundColor: backgroundColor,
+              // scaffoldBackgroundColor: backgroundColor,
               textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
               appBarTheme: const AppBarTheme(
                 backgroundColor: backgroundColor,

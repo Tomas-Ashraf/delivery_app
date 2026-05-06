@@ -8,7 +8,7 @@ class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, 'Orders'),
+      appBar: buildAppBar(context, 'Orders', favorite: false),
       body: emptyOrdersState(context),
     );
   }
