@@ -13,7 +13,6 @@ abstract class AppRouter {
   static const kOnBoardingScreen = '/onBoardingScreen';
   static const kHomeScreen = '/homeScreen';
   static const kAuthScreen = '/authScreen';
-  //static const kHomeScreen = '/homeScreen';
   static const kResetScreen = '/resetPasswordScreen';
 
   //routers of orders and history screens

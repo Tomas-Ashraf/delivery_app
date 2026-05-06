@@ -14,7 +14,7 @@ class AuthTopSection extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     return Container(
       width: screenSize.width,
-      height: screenSize.height * 0.40,
+      height: screenSize.height * 0.36,
       decoration: const BoxDecoration(
         color: Color(0xFFFFFFFF),
         borderRadius: BorderRadius.only(
