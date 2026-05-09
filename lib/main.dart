@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/bloc_observer.dart';
 import 'package:food_delivery_app/constants.dart';
-import 'package:food_delivery_app/core/utils/app_router.dart';
 import 'package:food_delivery_app/features/Home_Feature/manager/foodCubit.dart';
+import 'package:food_delivery_app/features/cart_feature/cart_feature_main.dart';
 import 'package:food_delivery_app/firebase_options.dart';
 
 Future<void> main() async {
@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => FoodCubit()..getFood()),
           ],
-          child: MaterialApp.router(
-            routerConfig: AppRouter.router,
-            // home: ItemDetails(),
+          child: MaterialApp(
+            //  routerConfig: AppRouter.router,
+            home: CartFeature(),
             theme: ThemeData(
               // scaffoldBackgroundColor: backgroundColor,
               textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),

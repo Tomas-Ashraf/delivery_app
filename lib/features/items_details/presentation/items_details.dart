@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_delivery_app/core/utils/spaces.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
-import 'package:food_delivery_app/core/utils/widgets/custom_button.dart';
+import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:food_delivery_app/core/widgets/reusedAppBar.dart';
 import 'package:food_delivery_app/features/items_details/manager/item_cubit.dart';
 import 'package:food_delivery_app/features/items_details/manager/item_repo.dart';
