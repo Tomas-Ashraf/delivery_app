@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/features/Home_Feature/models/foodCardModel.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 
 abstract class FoodState {}
 
@@ -7,7 +7,7 @@ class FoodInitial extends FoodState {}
 class FoodLoading extends FoodState {}
 
 class FoodLoaded extends FoodState {
-  final List<FoodCardModel> items;
+  final List<ProductModel> items;
   FoodLoaded(this.items);
 }
 

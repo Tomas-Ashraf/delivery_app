@@ -1,0 +1,13 @@
+{
+    "editor.quickSuggestions":{
+        "comments": "off",
+        "strings": "off",
+        "other": "off"
+    }, 
+    // {
+
+    //     "other": "on",
+    //     "comments": "off",
+    //     "strings": "off"
+    // }
+}

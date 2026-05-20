@@ -7,7 +7,7 @@ class SearchInitial extends SearchState {}
 class SearchLoading extends SearchState {}
 
 class SearchLoaded extends SearchState {
-  final List<FoodCardModel> items;
+  final List<ProductModel> items;
   SearchLoaded(this.items);
 }
 

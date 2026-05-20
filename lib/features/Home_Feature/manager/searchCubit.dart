@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart'; // ✅
 import 'package:food_delivery_app/features/Home_Feature/manager/foodServices.dart';
-import 'package:food_delivery_app/features/Home_Feature/models/foodCardModel.dart'; // ✅
 
 part 'searchState.dart';
 
