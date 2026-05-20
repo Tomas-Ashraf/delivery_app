@@ -5,4 +5,4 @@ const kAuthScreenBackgroundColor = Color(0xfff2f2f2);
 const backgroundColor = Color(0XFFF0F0F0);
 
 /// to be handled
-const categories = ['All', 'Cultural', 'Food', 'Adventure', 'Nature'];
+const categories = ['All', 'Food', 'Drinks', 'Snacks', 'Sauces'];

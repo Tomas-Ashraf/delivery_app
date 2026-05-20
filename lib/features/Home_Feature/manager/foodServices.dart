@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:food_delivery_app/features/Home_Feature/models/foodCardModel.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 
 class FoodServices {
   final _firestore = FirebaseFirestore.instance;
 
-  static const String collection = 'products';
+  static const String collection = 'items';
 
-  Future<List<FoodCardModel>> getFood({String category = 'All'}) async {
+  Future<List<ProductModel>> getFood({String category = 'All'}) async {
     try {
-      Query query = _firestore.collection(collection);
+      Query<Map<String, dynamic>> query = _firestore.collection(collection);
       if (category != 'All') {
         query = query.where('category', isEqualTo: category);
       }
-      final snapshot = await query.get();
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await query.get();
       return snapshot.docs
-          .map((doc) => FoodCardModel.fromFirestore(doc))
+          .map((doc) => ProductModel.fromFirestore(doc))
           .toList();
     } catch (e) {
       print('Error fetching food: $e');
@@ -22,16 +22,18 @@ class FoodServices {
     }
   }
 
-  Future<List<FoodCardModel>> searchFood({required String query}) async {
+  Future<List<ProductModel>> searchFood({required String query}) async {
     try {
-      final snapshot = await _firestore.collection(collection).get();
+      final QuerySnapshot<Map<String, dynamic>> snapshot = await _firestore
+          .collection(collection)
+          .get();
 
       final q = query.toLowerCase();
       return snapshot.docs
-          .map((doc) => FoodCardModel.fromFirestore(doc))
+          .map((doc) => ProductModel.fromFirestore(doc))
           .where(
             (item) =>
-                item.title.toLowerCase().contains(q) ||
+                item.name.toLowerCase().contains(q) ||
                 item.category.toLowerCase().contains(q),
           )
           .toList();

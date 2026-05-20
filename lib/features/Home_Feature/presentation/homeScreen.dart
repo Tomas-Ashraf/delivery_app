@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/features/account_screen/presentation/account_screen.dart';
 import 'package:food_delivery_app/features/History_Feature/historyScreen.dart';
 import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/Home/Home.dart';
-import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/customBottomNavBar.dart';
+import 'package:food_delivery_app/features/Home_Feature/presentation/widgets/custom_bottom_nav_bar.dart';
+import 'package:food_delivery_app/features/account_screen/presentation/account_screen.dart';
 import 'package:food_delivery_app/features/orders_Feature/OrdersScreen.dart';
 
 class HomeScreen extends StatefulWidget {

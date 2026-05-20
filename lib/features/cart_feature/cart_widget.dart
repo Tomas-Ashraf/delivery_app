@@ -1,98 +1,127 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/core/product_control/cart_cubit.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 import 'package:food_delivery_app/core/utils/colors.dart';
-import 'package:food_delivery_app/core/utils/spaces.dart';
-import 'package:food_delivery_app/core/utils/styles.dart';
 
 class CartWidget extends StatelessWidget {
-  const CartWidget({super.key});
+  const CartWidget({super.key, required this.item});
+
+  final ProductModel item;
 
   @override
   Widget build(BuildContext context) {
+    // check if the item is in the cart to get the updated quantity and price
+    final cartItem = context.watch<CartCubit>().state.cartItems.firstWhere(
+      (e) => e.id == item.id,
+      orElse: () => item,
+    );
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.15),
-              spreadRadius: 2,
-              blurRadius: 8,
-              offset: const Offset(0, 3),
-            ),
-          ],
         ),
-
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// Product Image
+            // product image
             ClipOval(
               child: Image.network(
-                'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
-                width: 70.w,
-                height: 70.h,
+                cartItem.images.first,
+                width: 80.w,
+                height: 80.h,
                 fit: BoxFit.cover,
               ),
             ),
 
-            Spaces.horizontalSpace(20.w),
+            SizedBox(width: 20.w),
 
-            /// Product Details
+            // product details and quantity controls
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// Product Name
                   Text(
-                    'Veggie tomato mix',
-                    style: Styles.textStyle18,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    cartItem.name,
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
                   ),
 
-                  Spaces.verticalSpace(8.h),
+                  SizedBox(height: 8.h),
 
-                  /// Product Price
-                  Text('#1,900', style: Styles.textStyle17),
+                  Text(
+                    '\$ ${cartItem.price}',
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.kPrimaryColor,
+                    ),
+                  ),
 
-                  Spaces.verticalSpace(14.h),
+                  SizedBox(height: 14.h),
 
-                  /// Quantity Buttons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.kPrimaryColor,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                context.read<CartCubit>().updateQuantity(
+                                  cartItem.id,
+                                  -1,
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.remove,
+                                color: Colors.white,
+                              ),
+                            ),
+
+                            Text(
+                              '${cartItem.quantity}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.sp,
+                              ),
+                            ),
+
+                            IconButton(
+                              onPressed: () {
+                                context.read<CartCubit>().updateQuantity(
+                                  cartItem.id,
+                                  1,
+                                );
+                              },
+                              icon: const Icon(Icons.add, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 15.h),
+
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12.w,
-                        vertical: 6.h,
-                      ),
-                      decoration: BoxDecoration(
+                    child: Text(
+                      'Total: ${cartItem.price * cartItem.quantity} \$',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         color: AppColors.kPrimaryColor,
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.remove, size: 18.sp, color: Colors.white),
-
-                          SizedBox(width: 10.w),
-
-                          Text(
-                            '1',
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-
-                          SizedBox(width: 10.w),
-
-                          Icon(Icons.add, size: 18.sp, color: Colors.white),
-                        ],
                       ),
                     ),
                   ),

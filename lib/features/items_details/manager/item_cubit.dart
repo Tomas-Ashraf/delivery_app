@@ -12,9 +12,9 @@ class ItemCubit extends Cubit<ItemState> {
   Future<void> fetchItemData() async {
     emit(ItemLoadingState());
     try {
-      final items = await getItemRepo.getItemDetails();
-      if (items.isNotEmpty) {
-        emit(ItemSuccessState(items.first));
+      final products = await getItemRepo.getItemDetails();
+      if (products.isNotEmpty) {
+        emit(ItemSuccessState(products.first));
       } else {
         emit(ItemFailureState('No item details found'));
       }

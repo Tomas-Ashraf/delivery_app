@@ -1,4 +1,4 @@
-import 'package:food_delivery_app/features/items_details/models/item_model.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 
 abstract class ItemState {}
 
@@ -7,8 +7,8 @@ class ItemInitialState extends ItemState {}
 class ItemLoadingState extends ItemState {}
 
 class ItemSuccessState extends ItemState {
-  final ItemModel itemModel;
-  ItemSuccessState(this.itemModel);
+  final ProductModel product;
+  ItemSuccessState(this.product);
 }
 
 class ItemFailureState extends ItemState {

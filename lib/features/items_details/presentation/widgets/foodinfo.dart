@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/features/items_details/models/item_model.dart';
 
 class FoodItemInformation extends StatelessWidget {
-  FoodItemInformation({super.key, required this.name, required this.price});
-  late ItemModel foodModel;
+  const FoodItemInformation({
+    super.key,
+    required this.name,
+    required this.price,
+  });
+
   final String name;
-  final String price;
+  final double price;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +26,7 @@ class FoodItemInformation extends StatelessWidget {
           ),
           const SizedBox(height: 11),
           Text(
-            price,
+            ' $price \$',
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -33,6 +36,5 @@ class FoodItemInformation extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }

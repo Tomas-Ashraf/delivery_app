@@ -1,8 +1,6 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/features/History_Feature/historyScreen.dart';
-import 'package:food_delivery_app/features/Home_Feature/presentation/homeScreen.dart';
+import 'package:food_delivery_app/features/Home_Feature/presentation/home_screen.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/auth_screen.dart';
-import 'package:food_delivery_app/features/auth_screen/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:food_delivery_app/features/auth_screen/presentation/reset_password_screen.dart';
 import 'package:food_delivery_app/features/onboarding_screen/presentation/onboarding_screen.dart';
 import 'package:food_delivery_app/features/orders_Feature/OrdersScreen.dart';
@@ -33,10 +31,7 @@ abstract class AppRouter {
 
       GoRoute(
         path: kResetScreen,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AuthCubit(),
-          child: ResetPasswordScreen(),
-        ),
+        builder: (context, state) => ResetPasswordScreen(),
       ),
 
       //routes of Home operation screens

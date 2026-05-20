@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_delivery_app/core/product_control/cart_cubit.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 import 'package:food_delivery_app/core/utils/spaces.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
 import 'package:food_delivery_app/core/widgets/custom_button.dart';
@@ -9,7 +11,6 @@ import 'package:food_delivery_app/core/widgets/reusedAppBar.dart';
 import 'package:food_delivery_app/features/items_details/manager/item_cubit.dart';
 import 'package:food_delivery_app/features/items_details/manager/item_repo.dart';
 import 'package:food_delivery_app/features/items_details/manager/item_states.dart';
-import 'package:food_delivery_app/features/items_details/models/item_model.dart';
 import 'package:food_delivery_app/features/items_details/presentation/shimmer_items_details.dart';
 import 'package:food_delivery_app/features/items_details/presentation/widgets/foodinfo.dart';
 import 'package:food_delivery_app/features/items_details/presentation/widgets/item_images_carosel.dart';
@@ -18,7 +19,8 @@ import 'package:food_delivery_app/features/items_details/presentation/widgets/po
 import '../../../constants.dart' as AppColors;
 
 class ItemDetails extends StatefulWidget {
-  const ItemDetails({super.key});
+  const ItemDetails({super.key, required this.product});
+  final ProductModel product;
 
   @override
   State<ItemDetails> createState() => _ItemDetailsState();
@@ -27,10 +29,13 @@ class ItemDetails extends StatefulWidget {
 class _ItemDetailsState extends State<ItemDetails> {
   int currentIndex = 0;
   bool isFavorite = false;
-  ItemModel? itemModel;
 
   @override
   Widget build(BuildContext context) {
+    final isInCart = context.watch<CartCubit>().state.cartItems.any(
+      (e) => e.id == widget.product.id,
+    );
+    final item = widget.product;
     return BlocProvider(
       create: (context) =>
           ItemCubit(GetItemRepo(FirebaseFirestore.instance))..fetchItemData(),
@@ -57,9 +62,6 @@ class _ItemDetailsState extends State<ItemDetails> {
 
           // in case of success state we will get the item data and display it
           if (state is ItemSuccessState) {
-            final item = state.itemModel;
-            itemModel = item;
-
             return Scaffold(
               backgroundColor: Colors.white,
               appBar: buildAppBar(
@@ -94,29 +96,41 @@ class _ItemDetailsState extends State<ItemDetails> {
                           ),
                           Spaces.verticalSpace(50.h),
                           ItemPolices(
-                            item.deliveryInfo,
-                            item.returnPolicy,
+                            item.deliveryInfo!,
+                            item.returnPolicy!,
                           ).deliveryInfo(),
                           Spaces.verticalSpace(30),
                           ItemPolices(
-                            item.deliveryInfo,
-                            item.returnPolicy,
+                            item.deliveryInfo!,
+                            item.returnPolicy!,
                           ).returnPolicy(),
                         ],
                       ),
                     ),
 
                     CustomButton(
-                      backgroundColor: item.isAvailable
+                      backgroundColor: item.isAvailable!
                           ? AppColors.kPrimaryColor
                           : Colors.grey,
                       height: 56,
                       width: double.infinity,
                       radius: 28,
-                      text: item.isAvailable
-                          ? 'Add to cart'
+                      text: item.isAvailable!
+                          ? isInCart
+                                ? 'Remove from Cart'
+                                : 'Add to cart'
                           : 'Unavailable Now',
-                      onTap: () {},
+                      onTap: () {
+                        if (item.isAvailable!) {
+                          // Handle add to cart action
+
+                          if (isInCart) {
+                            context.read<CartCubit>().removeFromCart(item.id);
+                          } else {
+                            context.read<CartCubit>().addToCart(item);
+                          }
+                        }
+                      },
                       textStyle: Styles.textStyle65.copyWith(fontSize: 20),
                     ),
                   ],
