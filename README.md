@@ -1,0 +1,134 @@
+# 🍔 Food Delivery App
+
+A modern and responsive **Food Delivery Mobile Application** built using **Flutter**.  
+The app provides a smooth and clean user experience for browsing meals, adding items to cart, and completing orders.
+
+---
+
+# 📱 Screenshots
+
+## Splash & Authentication
+
+| Splash Screen | Login Screen | Sign Up Screen |
+|---------------|--------------|----------------|
+| ![](assets/screenshots/start.jpg) | ![](assets/screenshots/login.jpg) | ![](assets/screenshots/register.jpg) |
+
+---
+
+## Home Screen
+
+| Home Screen |
+|-------------|
+| ![](assets/screenshots/home.jpg) |
+
+---
+
+## Product Details & Cart
+
+| Product Details | Cart Screen | Empty Cart |
+|-----------------|-------------|-------------|
+| ![](assets/screenshots/details.jpg) | ![](assets/screenshots/cart.jpg) | ![](assets/screenshots/emptycart.jpg) |
+
+---
+
+## Profile
+
+| Profile Screen |
+|----------------|
+| ![](assets/screenshots/profile.jpg) |
+
+---
+
+# ✨ Features
+
+* 🔐 Login & Sign Up
+* 🍔 Browse Food Categories
+* 🔍 Search Meals
+* ❤️ Add to Favorites
+* 🛒 Add / Remove Cart Items
+* 💳 Checkout & Payment
+* 📦 Order Summary
+* 👤 User Profile
+* 🚫 Empty States
+* 📶 No Internet Screen
+* 🎨 Responsive UI
+* ⚡ Smooth Navigation & Animations
+
+---
+
+# 🛠️ Tech Stack
+
+* Flutter
+* Dart
+* Cubit / Bloc State Management
+* Firebase
+* REST APIs
+* Shared Preferences
+* Responsive Design
+
+---
+
+# 📂 Folder Structure
+
+```text
+lib/
+├── core/
+├── features/
+├── cubit/
+├── models/
+└── main.dart
+```
+
+---
+
+# 🎨 UI Design
+
+* Modern Orange Theme 🍊
+* Clean Minimal Design
+* Smooth User Experience
+* Responsive Layout
+
+---
+
+# 🔥 Future Improvements
+
+* 📍 Google Maps Integration
+* 💳 Online Payments
+* 🔔 Push Notifications
+* 🌙 Dark Mode
+* 🌐 Multi-language Support
+* 🚚 Live Order Tracking
+
+---
+
+# 🚀 Getting Started
+
+## Clone Repository
+
+```bash
+git clone https://github.com/your-username/food-delivery-app.git
+```
+
+## Install Dependencies
+
+```bash
+flutter pub get
+```
+
+## Run The App
+
+```bash
+flutter run
+```
+
+---
+
+# 👩‍💻 Developer
+
+Developed with ❤️ using Flutter
+
+---
+
+# 📄 License
+
+This project is open-source and available for learning and portfolio purposes.
