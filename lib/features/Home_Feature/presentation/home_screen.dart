@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        //  appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
         body: screens[currentIndex],
 
         bottomNavigationBar: CustomBottomNavBar(
