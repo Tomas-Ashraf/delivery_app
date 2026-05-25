@@ -68,13 +68,27 @@ class AccountScreenBody extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const SizedBox(height: 27),
-                                MenuItem(title: 'Orders'),
+                                MenuItem(
+                                  title: 'Orders',
+                                  onTap: () {
+                                    GoRouter.of(
+                                      context,
+                                    ).push(AppRouter.kOrdersScreen);
+                                  },
+                                ),
                                 const SizedBox(height: 12),
                                 MenuItem(title: 'Pending reviews'),
                                 const SizedBox(height: 12),
                                 MenuItem(title: 'Faq'),
                                 const SizedBox(height: 12),
-                                MenuItem(title: 'Help'),
+                                MenuItem(
+                                  title: 'Help',
+                                  onTap: () {
+                                    GoRouter.of(
+                                      context,
+                                    ).push(AppRouter.kPaymentScreen);
+                                  },
+                                ),
                               ],
                             ),
                           ),
