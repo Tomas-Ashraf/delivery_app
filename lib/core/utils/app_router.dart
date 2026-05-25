@@ -4,6 +4,7 @@ import 'package:food_delivery_app/features/auth_screen/presentation/auth_screen.
 import 'package:food_delivery_app/features/auth_screen/presentation/reset_password_screen.dart';
 import 'package:food_delivery_app/features/onboarding_screen/presentation/onboarding_screen.dart';
 import 'package:food_delivery_app/features/orders_Feature/OrdersScreen.dart';
+import 'package:food_delivery_app/features/payment_screen/presentation/payment_screen.dart';
 import 'package:food_delivery_app/features/splash/presentation/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,9 +14,9 @@ abstract class AppRouter {
   static const kAuthScreen = '/authScreen';
   static const kResetScreen = '/resetPasswordScreen';
 
-  //routers of orders and history screens
   static const kOrdersScreen = '/ordersScreen';
   static const kHistoryScreen = '/historyScreen';
+  static const kPaymentScreen = '/paymentScreen';
 
   static final router = GoRouter(
     routes: [
@@ -26,7 +27,6 @@ abstract class AppRouter {
         builder: (context, state) => OnboardingScreen(),
       ),
 
-      //routes of auth operation screens
       GoRoute(path: kAuthScreen, builder: (context, state) => AuthScreen()),
 
       GoRoute(
@@ -34,12 +34,15 @@ abstract class AppRouter {
         builder: (context, state) => ResetPasswordScreen(),
       ),
 
-      //routes of Home operation screens
       GoRoute(path: kHomeScreen, builder: (context, state) => HomeScreen()),
       GoRoute(path: kOrdersScreen, builder: (context, state) => OrdersScreen()),
       GoRoute(
         path: kHistoryScreen,
         builder: (context, state) => HistoryScreen(),
+      ),
+      GoRoute(
+        path: kPaymentScreen,
+        builder: (context, state) => PaymentScreen(),
       ),
     ],
   );
