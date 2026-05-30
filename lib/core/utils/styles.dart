@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class Styles {
   static TextStyle textStyle65 = TextStyle(
@@ -12,7 +11,7 @@ abstract class Styles {
     height: 1.2,
     letterSpacing: -0.5,
   );
-    static TextStyle textStyle15 = TextStyle(
+  static TextStyle textStyle15 = TextStyle(
     fontFamily: 'SF-Pro-Rounded',
     fontSize: 15,
     fontWeight: FontWeight.w600,
@@ -31,13 +30,18 @@ abstract class Styles {
     color: Color(0xFF000000),
   );
 
-
   // used in app bar titles
   static TextStyle textStyle20 = TextStyle(
     fontFamily: 'SF-Pro-Rounded',
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: Colors.black87,
+  );
+  static TextStyle textStyle22 = TextStyle(
+    fontFamily: 'SF-Pro-Rounded',
+    fontSize: 22,
+    fontWeight: FontWeight.w600,
+    color: Colors.black,
   );
   static TextStyle textStyle34 = TextStyle(
     fontSize: 34,
