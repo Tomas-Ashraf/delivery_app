@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
 import 'package:food_delivery_app/core/widgets/custom_button.dart';
 import 'package:food_delivery_app/features/account_screen/presentation/widgets/user_details_card.dart';
@@ -9,8 +10,13 @@ import 'package:food_delivery_app/features/payment_screen/presentation/widgets/d
 import 'package:food_delivery_app/features/payment_screen/presentation/widgets/payment_method_card.dart';
 
 class PaymentScreenBody extends StatelessWidget {
-  const PaymentScreenBody({super.key});
-
+  const PaymentScreenBody({
+    super.key,
+    required this.itemsList,
+    required this.totalPrice,
+  });
+  final List<ProductModel> itemsList;
+  final String totalPrice;
   @override
   Widget build(BuildContext context) {
     UserModel userModel = UserModel(
@@ -116,13 +122,13 @@ class PaymentScreenBody extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Total',
+                              'Total Price',
                               style: Styles.textStyle17.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: Colors.black,
                               ),
                             ),
-                            Text('23,000', style: Styles.textStyle22),
+                            Text(totalPrice, style: Styles.textStyle22),
                           ],
                         ),
                         SizedBox(height: 48),

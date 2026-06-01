@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/core/product_control/models/main_product_model.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
 import 'package:food_delivery_app/features/payment_screen/presentation/widgets/payment_screen_body.dart';
 
 class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({super.key});
-
+  const PaymentScreen({
+    super.key,
+    required this.itemsList,
+    required this.totalPrice,
+  });
+  final List<ProductModel> itemsList;
+  final String totalPrice;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +21,7 @@ class PaymentScreen extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: PaymentScreenBody(),
+      body: PaymentScreenBody(itemsList: itemsList, totalPrice: totalPrice ),
     );
   }
 }
