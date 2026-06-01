@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/features/payment_screen/manager/cubit/payment_cubit.dart';
 import 'package:food_delivery_app/features/payment_screen/presentation/widgets/payment_option_widget.dart';
 
 class PaymentMethodCard extends StatefulWidget {
@@ -9,8 +11,6 @@ class PaymentMethodCard extends StatefulWidget {
 }
 
 class _PaymentMethodCardState extends State<PaymentMethodCard> {
-  int _selectedPaymentMethod = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,18 +31,21 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
           PaymentOption(
             label: 'Card',
             value: 0,
-            groupValue: _selectedPaymentMethod,
+
             showDivider: true,
-            onChanged: (val) => setState(() => _selectedPaymentMethod = val!),
+            onTap: () => BlocProvider.of<PaymentCubit>(
+              context,
+            ).changePaymentMethod('Card'),
             icon: Icons.credit_card_rounded,
             iconColor: Color(0xFFE8622A),
           ),
           PaymentOption(
             label: 'Bank account',
             value: 1,
-            groupValue: _selectedPaymentMethod,
             showDivider: false,
-            onChanged: (val) => setState(() => _selectedPaymentMethod = val!),
+            onTap: () => BlocProvider.of<PaymentCubit>(
+              context,
+            ).changePaymentMethod('Bank account'),
             icon: Icons.account_balance_rounded,
             iconColor: Color(0xFFE8449A),
           ),

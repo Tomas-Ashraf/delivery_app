@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/core/utils/styles.dart';
+import 'package:food_delivery_app/features/payment_screen/manager/cubit/payment_cubit.dart';
 
 class PaymentOption extends StatelessWidget {
   final String label;
   final int value;
   final bool showDivider;
-  final ValueChanged<int?> onChanged;
-  final int groupValue;
+  final void Function() onTap;
   final IconData icon;
   final Color iconColor;
 
@@ -14,24 +15,26 @@ class PaymentOption extends StatelessWidget {
     required this.label,
     required this.value,
     required this.showDivider,
-    required this.onChanged,
-    required this.groupValue,
+
     required this.icon,
     required this.iconColor,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isSelected = value == groupValue;
-
     return Column(
       children: [
         InkWell(
-          onTap: () => onChanged(value),
-
+          onTap: onTap,
           borderRadius: BorderRadius.vertical(
-            top: value == 0 ? const Radius.circular(14) : Radius.zero,
-            bottom: value == 1 ? const Radius.circular(14) : Radius.zero,
+            top: BlocProvider.of<PaymentCubit>(context).paymentMethod == label
+                ? const Radius.circular(14)
+                : Radius.zero,
+            bottom:
+                BlocProvider.of<PaymentCubit>(context).paymentMethod == label
+                ? const Radius.circular(14)
+                : Radius.zero,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -43,13 +46,19 @@ class PaymentOption extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: isSelected
+                      color:
+                          BlocProvider.of<PaymentCubit>(
+                                context,
+                              ).paymentMethod ==
+                              label
                           ? const Color(0xFFE8622A)
                           : const Color(0xFFCCCCCC),
                       width: 2,
                     ),
                   ),
-                  child: isSelected
+                  child:
+                      BlocProvider.of<PaymentCubit>(context).paymentMethod ==
+                          label
                       ? Center(
                           child: Container(
                             width: 9,

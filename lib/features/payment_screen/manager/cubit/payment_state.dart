@@ -18,4 +18,6 @@ final class AccountGetDataFailure extends PaymentState {
   AccountGetDataFailure({required this.errorMessage});
 }
 
+final class DeliverMethodChanged extends PaymentState {}
 
+final class PaymentMethodChanged extends PaymentState {}
