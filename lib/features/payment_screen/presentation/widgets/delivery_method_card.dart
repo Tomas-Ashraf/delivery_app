@@ -1,6 +1,8 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/features/payment_screen/manager/cubit/payment_cubit.dart';
 import 'package:food_delivery_app/features/payment_screen/presentation/widgets/delivery_option_widget.dart';
 
 class DeliveryMethodCard extends StatefulWidget {
@@ -11,8 +13,6 @@ class DeliveryMethodCard extends StatefulWidget {
 }
 
 class _DeliveryMethodCardState extends State<DeliveryMethodCard> {
-  int _selectedDeliveryMethod = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,16 +33,18 @@ class _DeliveryMethodCardState extends State<DeliveryMethodCard> {
           DeliveryOption(
             label: 'Door delivery',
             value: 0,
-            groupValue: _selectedDeliveryMethod,
             showDivider: true,
-            onChanged: (val) => setState(() => _selectedDeliveryMethod = val!),
+            onTap: () => BlocProvider.of<PaymentCubit>(
+              context,
+            ).changeDeliveryMethod('Door delivery'),
           ),
           DeliveryOption(
             label: 'Pick up',
             value: 1,
-            groupValue: _selectedDeliveryMethod,
             showDivider: false,
-            onChanged: (val) => setState(() => _selectedDeliveryMethod = val!),
+            onTap: () => BlocProvider.of<PaymentCubit>(
+              context,
+            ).changeDeliveryMethod('Pick up'),
           ),
         ],
       ),
