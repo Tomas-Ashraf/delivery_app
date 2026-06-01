@@ -42,7 +42,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kPaymentScreen,
-        builder: (context, state) => PaymentScreen(),
+        name: 'paymentScreen',
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return PaymentScreen(
+            itemsList: data['cartItems'],
+            totalPrice: data['total'],
+          );
+        },
       ),
     ],
   );
