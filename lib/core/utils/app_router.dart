@@ -5,6 +5,8 @@ import 'package:food_delivery_app/features/auth_screen/presentation/reset_passwo
 import 'package:food_delivery_app/features/onboarding_screen/presentation/onboarding_screen.dart';
 import 'package:food_delivery_app/features/orders_Feature/OrdersScreen.dart';
 import 'package:food_delivery_app/features/payment_screen/presentation/payment_screen.dart';
+import 'package:food_delivery_app/features/receipt_screen.dart/data/receipt_model.dart';
+import 'package:food_delivery_app/features/receipt_screen.dart/presentation/receipt_screen.dart';
 import 'package:food_delivery_app/features/splash/presentation/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +19,8 @@ abstract class AppRouter {
   static const kOrdersScreen = '/ordersScreen';
   static const kHistoryScreen = '/historyScreen';
   static const kPaymentScreen = '/paymentScreen';
+  static const kReceiptScreen = '/receiptScreen';
+
 
   static final router = GoRouter(
     routes: [
@@ -48,6 +52,24 @@ abstract class AppRouter {
           return PaymentScreen(
             itemsList: data['cartItems'],
             totalPrice: data['total'],
+          );
+        },
+      ),
+       GoRoute(
+        path: kReceiptScreen,
+        name: 'receiptScreen',
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return ReceiptScreen(
+            receipt: ReceiptModel(
+              clientName: data['clientName'],
+              phoneNumber: data['phoneNumber'],
+              address: data['address'],
+              deliveryMethod: data['deliveryMethod'],
+              paymentMethod: data['paymentMethod'],
+              totalPrice: data['totalPrice'],
+              items: data['items'],
+            ),
           );
         },
       ),

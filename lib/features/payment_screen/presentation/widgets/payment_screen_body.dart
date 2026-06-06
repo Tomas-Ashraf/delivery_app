@@ -8,6 +8,8 @@ import 'package:food_delivery_app/features/auth_screen/data/models/user_model.da
 import 'package:food_delivery_app/features/payment_screen/manager/cubit/payment_cubit.dart';
 import 'package:food_delivery_app/features/payment_screen/presentation/widgets/delivery_method_card.dart';
 import 'package:food_delivery_app/features/payment_screen/presentation/widgets/payment_method_card.dart';
+import 'package:food_delivery_app/features/receipt_screen.dart/data/receipt_model.dart';
+import 'package:food_delivery_app/features/receipt_screen.dart/presentation/receipt_screen.dart';
 
 class PaymentScreenBody extends StatelessWidget {
   const PaymentScreenBody({
@@ -140,7 +142,31 @@ class PaymentScreenBody extends StatelessWidget {
                           textStyle: Styles.textStyle17.copyWith(
                             color: Colors.white,
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            final paymentCubit = BlocProvider.of<PaymentCubit>(
+                              context,
+                            );
+                            final deliveryMethod = paymentCubit.deliveryMethod;
+                            final paymentMethod = paymentCubit.paymentMethod;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ReceiptScreen(
+                                  receipt: ReceiptModel(
+                                    clientName: userModel.userName!.toString(),
+                                    phoneNumber: userModel.phoneNumber!
+                                        .toString(),
+                                    address: userModel.address!.toString(),
+                                    deliveryMethod:
+                                        deliveryMethod, // ✅ Use captured value
+                                    paymentMethod: paymentMethod,
+                                    totalPrice: totalPrice.toString(),
+                                    items: itemsList,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                           backgroundColor: const Color(0xFFE8490F),
                         ),
                       ],
